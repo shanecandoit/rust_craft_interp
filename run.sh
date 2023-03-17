@@ -14,6 +14,7 @@ echo "test"
 ./target/debug/craft_interp tests/test_add.rox
 
 # run interactive
-echo "run"
-./target/debug/craft_interp
-
+if false; then
+    echo "run"
+    ./target/debug/craft_interp
+fi

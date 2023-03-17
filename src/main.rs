@@ -6,13 +6,15 @@ use std::io::Write;
 // lox language, but in rust
 // rox? like Sisyphus with the rock
 
+// Using Result<(), ()> instead of throwing exceptions
+
 fn main() {
     println!("Hello, world!");
 
-    // Read file from path
     let arg_count = env::args().len();
     println!("args# {}", arg_count);
     if arg_count > 1 {
+        // read files from args
         for (i, argument) in env::args().enumerate() {
             if i == 0 {
                 continue; // skip first
@@ -21,9 +23,14 @@ fn main() {
             let source = argument;
 
             let result = run_file(source);
-            println!("result {:?}", result);
+            match result {
+                Ok(_) => {}
+                Err(_) => {
+                    println!("Error running file");
+                    return;
+                }
+            }
         }
-        return;
     } else {
         // or drop into prompt
         match run_prompt() {
