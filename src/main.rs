@@ -2,6 +2,10 @@ use std::env;
 use std::io;
 use std::io::Write;
 
+mod scanner;
+// use Scanner::Scanner;
+// use Scanner::new;
+
 // http://craftinginterpreters.com/
 // lox language, but in rust
 // rox? like Sisyphus with the rock
@@ -94,6 +98,13 @@ fn run_prompt() -> Result<(), ()> {
 // 1.1 run(source) Run the contents of a file
 fn run(source: String) -> Result<(), ()> {
     println!("run {}", source);
+
+    let scanner = scanner::Scanner::new(source);
+    let tokens = scanner.scan_tokens();
+
+    for (i, token) in tokens.iter().enumerate() {
+        println!("{}\t{:?}", i, token);
+    }
 
     Ok(())
 }

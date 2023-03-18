@@ -5,6 +5,7 @@ set -e
 # build
 echo "build"
 cargo build
+# cargo build -r -q &
 
 echo "format"
 cargo fmt
